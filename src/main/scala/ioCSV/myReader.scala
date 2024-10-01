@@ -1,11 +1,8 @@
 package iocsv
 
 import scala.io.BufferedSource
-import scala.util.Try
 
 object CSVReader {
-
-  //TODO: Check format of received CSV
 
   /**
     *
@@ -17,7 +14,7 @@ object CSVReader {
 
     val data = it.getLines()
                 .toArray
-                .map(_.split(","))
+                .map(_.filterNot(_.isWhitespace).split(","))
 
 
     val columnCount = if data.nonEmpty then data.head.size else 0
